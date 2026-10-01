@@ -4,6 +4,10 @@ body {
   font-family: "PT Serif";
 }
 
+h1{
+    text-decoration: underline overline;
+}
+
 .labs, .aboutme{
   border: 5px solid;
   border-radius: 8px;
