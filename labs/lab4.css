@@ -1,0 +1,58 @@
+body {
+  background-color: #77BA99;
+  color: #262730;
+  font-family: "PT Serif";
+}
+
+.labs, .aboutme{
+  border: 5px solid;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   margin-bottom: 2rem;
+}
+
+/* The section is the flex container; header and ol are the flex items */
+.labs section {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;   /* vertical alignment */
+  gap: 2rem;             /* space between header and list */
+  padding: 1rem;
+  
+}
+
+.labs header {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.labs ol {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  list-style: none; 
+  margin: 0;
+  padding: 0;
+}
+
+.labs li {
+    border:#262730 solid;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    margin-bottom: 0.5rem;
+    width: fit-content;          /* box hugs the text instead of stretching across */
+    list-style-position: inside; /* puts the number inside the box */
+    box-shadow: 0 8px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.aboutme .photos {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    gap: 4rem;
+
+}
