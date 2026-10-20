@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.value and functions</title>
+</head>
+<body>
+    <form action="#"> 
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <button id="bttn" type="button">Submit</button>
+    </form>
+    <p id="result"></p>
+
+    <br> <br>
+    <form action="#">
+        Number 1 <input type="number" id="num1" name="num1"><br><br>
+        Number 2 <input type="number" id="num2" name="num2"><br><br>
+
+    <p> Select your operation:</p>
+    <form>
+        <input type="radio" id="add" name="operation" value="Add">Add<br>
+        <input type="radio" id="subtract" name="operation" value="Subtract">Subtract<br>
+        <input type="radio" id="multiply" name="operation" value="Multiply">Multiply<br>
+        <button id="select" type="button">Select Operation</button>
+    
+    </form>
+    <script>
+        const nameInput = document.getElementById("name");
+        const result = document.getElementById("result");
+
+        document.getElementById('bttn').addEventListener('click', function() {
+            result.textContent = greet('welcome, ' + nameInput.value);
+        });
+
+
+        document.getElementById('select').addEventListener('click', function() {
+            const myOperation = document.querySelector('input[name="operation"]:checked');
+            result.textContent = calculate(Number(document.getElementById('num1').value), Number(document.getElementById('num2').value), myOperation.value);
+            console.log(myOperation.value);
+        });
+
+        //functions
+        const add = (a, b) => a + b;
+        const sub = (a, b) => a - b;
+        const multiply = (a, b) => a * b;
+
+        const greet = name => `Hello, ${name}`;
+
+        const calculate = (num1, num2, operation) => {
+            if (operation === 'Add') {
+                return add(num1, num2);
+            } else if (operation === 'Subtract') {
+                return sub(num1, num2);
+            } else if (operation === 'Multiply') {
+                return multiply(num1, num2);
+            } else if{
+                return 
+            }
+        };
+
+    </script>
+    
+</body>
+</html>
