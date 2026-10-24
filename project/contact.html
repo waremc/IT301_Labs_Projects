@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suggest a Movie | Matt's Reels</title>
+  <!-- Shared stylesheet for every page -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header with site name and navigation bar -->
+  <header>
+    <p class="logo"><a href="index.html">Matt's Reels</a></p>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="featured.html">Featured Review</a></li>
+        <li><a href="rankings.html">Rankings</a></li>
+        <li><a href="contact.html">Suggest a Movie</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main page content -->
+  <main>
+    <!-- Intro -->
+    <section class="intro">
+      <h1>Suggest a Movie</h1>
+      <p>Know a movie I should review? Fill out the form below.</p>
+    </section>
+
+    <!-- Suggestion form (required and type="email" for built-in validation) -->
+    <div class="panel">
+      <form>
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="movie">Movie title</label>
+        <input type="text" id="movie" name="movie" required>
+
+        <label for="why">Why should I review it?</label>
+        <textarea id="why" name="why" rows="5"></textarea>
+
+        <button class="button" type="submit">Send suggestion</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Matt's Reels &middot; An IT301 project by Matthew</p>
+    <p>Movie posters from <a href="https://www.themoviedb.org/">The Movie Database (TMDb)</a></p>
+  </footer>
+</body>
+</html>
