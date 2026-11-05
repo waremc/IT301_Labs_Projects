@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts </title>
+
+    <style>
+       body {
+          background-color: #f0f2f5;
+          font-family: Helvetica, Arial, sans-serif;
+       }
+
+       form {
+          min-height: 180px;
+       }
+
+       article, form {
+          background-color: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+          padding: 12px 16px;
+          margin-bottom: 16px;
+          max-width: 680px;
+          margin-left: auto;
+          margin-right: auto;
+       }
+
+       h2 {
+          color: #050505;
+          font-size: 0.9375rem;
+          font-weight: 600;
+          margin: 0 0 4px 0;
+       }
+
+       p {
+          color: #050505;
+          font-size: 0.9375rem;
+          line-height: 1.3333;
+          margin: 8px 0 0 0;
+       }
+    </style>
+</head>
+
+<body>
+<h1> Welcome to my Posts page! </h1>
+
+    <form action="#">
+
+        <label for="userID">Select User:</label>
+        <select id="userID">
+            <option value="">--Please choose an option--</option>
+            <option value="1">User 1</option>
+            <option value="2">User 2</option>
+            <option value="3">User 3</option>
+            <option value="4">User 4</option>
+            <option value="5">User 5</option>
+            <option value="6">User 6</option>
+            <option value="7">User 7</option>
+        </select>
+
+        <button type="button" id="filterBtn">Filter</button>
+
+        <br><br>
+
+        <label for="displayUserID">Enter User ID:</label>
+        <input type="number" id="displayUserID" min="1" max="10">
+
+        <button type="button" id="displayUserBtn">Display User Posts</button>
+
+        <br><br>
+
+        <label for="postID">Enter Post ID:</label>
+        <input type="number" id="postID" min="1" max="100">
+
+        <button type="button" id="findBtn">Find</button>
+
+    </form>
+
+    <script>
+        let posts = [];
+
+        const userID = document.getElementById('userID');
+        const filterBtn = document.getElementById('filterBtn');
+        const displayUserID = document.getElementById('displayUserID');
+        const displayUserBtn = document.getElementById('displayUserBtn');
+        const postID = document.getElementById('postID');
+        const findBtn = document.getElementById('findBtn');
+        
+        // Clearing articles code as a function for reuse
+        function clearArticles() {
+            document.querySelectorAll('article').forEach((article) => {
+                article.remove();
+            });
+        }
+
+        function displayPost(post) {
+            const articleObj = document.createElement('article');
+            const h2 = document.createElement('h2');
+            const meta = document.createElement('p');
+            const p = document.createElement('p');
+
+            h2.textContent = post.title;
+            // Added a way that I can see the user id and post id on the page itself
+            meta.textContent = `User ID: ${post.userId} | Post ID: ${post.id}`;
+            p.textContent = post.body;
+
+            articleObj.appendChild(h2);
+            articleObj.appendChild(meta);
+            articleObj.appendChild(p);
+            document.body.appendChild(articleObj);
+        }
+
+        function displayMessage(text) {
+            const articleObj = document.createElement('article');
+            const p = document.createElement('p');
+            p.textContent = text;
+            articleObj.appendChild(p);
+            document.body.appendChild(articleObj);
+        }
+
+        // Task 1 & Task 2: fetch, store, log, and display all posts, I decided to do a table display
+        async function fetchData() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+                const data = await response.json();
+                posts = data;
+
+                console.table(posts);
+
+                posts.forEach((post) => displayPost(post));
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                displayMessage('Could not load posts. Please try again later.');
+            }
+        }
+
+        // Task 3 & Task 4: dropdown filter for console only
+        filterBtn.addEventListener('click', () => {
+            if (userID.value === '') {
+                console.log('Please choose a user first.');
+                return;
+            }
+
+            const filtered = posts.filter((post) => post.userId == userID.value);
+            console.log(`Posts for User ${userID.value}:`);
+            console.table(filtered);
+        });
+
+        // Task 5: entered User ID then show that user's posts on the page
+        displayUserBtn.addEventListener('click', () => {
+            const id = Number(displayUserID.value);
+
+            clearArticles();
+
+            if (!id || id < 1 || id > 10) {
+                displayMessage('Please enter a User ID between 1 and 10.');
+                return;
+            }
+
+            const userPosts = posts.filter((post) => post.userId === id);
+            userPosts.forEach((post) => displayPost(post));
+        });
+
+        // Task 6: entered Post ID that shows that one post, or a not-found message
+        findBtn.addEventListener('click', () => {
+            const id = Number(postID.value);
+
+            clearArticles();
+
+            const match = posts.find((post) => post.id === id);
+
+            if (match) {
+                displayPost(match);
+            } else {
+                displayMessage(`Post ${postID.value || '(blank)'} was not found.`);
+            }
+        });
+
+        fetchData();
+    </script>
+
+</body>
+</html>
