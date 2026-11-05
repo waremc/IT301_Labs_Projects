@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p>Look in the console :)</p>
+
+    <script>
+    let products = [
+        {name: "Laptop", price: 850, category: "Electronics" },
+        {name: "Notebook", price: 5, category: "School Supplies" },
+        {name: "Headphones", price: 45, category: "Electronics" },
+        {name: "Backpack", price: 35, category: "School Supplies" },
+        {name: "Monitor", price: 220, category: "Electronics" }
+    ];
+
+
+    // Task 1
+    console.log(products[0].name)
+    console.log(products[4].price)
+
+    // Task 2
+    for (let product of products) {
+
+        console.log(product.name)
+
+    }
+    
+    // Task 3
+    products.forEach(product => {
+
+        console.log(`${product.name}: ${product.price}`)
+        
+    });
+    
+    // Task 4
+    const backpack = products.find(product => product.name === "Backpack");
+    console.log(backpack);
+
+    // Task 5
+    const electronics = products.filter(product => product.category === "Electronics")
+    console.log(electronics)
+    </script>
+    
+</body>
+</html>
