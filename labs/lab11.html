@@ -4,10 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        #myButton {
+            display: block;
+            margin: 0 auto;
+            background-color: blue;
+            color: black;
+            font-size: 24px;
+            padding: 20px 40px;
+            cursor: pointer;
+        }
+        #movementZone {
+            height: 75vh;
+            border: 2px dashed gray;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
     <button id="myButton">Click me! 😊</button>
+    <div id="movementZone"></div>
+
+    <script> 
+        const button = document.getElementById("myButton");
+        const movementZone = document.getElementById("movementZone");
+
+        button.addEventListener("mouseover", function() {
+            button.textContent = "Do not click! 😠";
+            button.style.backgroundColor = "yellow";
+        });
+
+        button.addEventListener("click", function() {
+            button.textContent = "Ouch! 🤕";
+            button.style.backgroundColor = "red";
+        });
+
+        button.addEventListener("mouseleave", function() {
+            button.textContent = "Phew! 😌";
+            button.style.backgroundColor = "lightgreen";
+        });
+
+        button.addEventListener("dblclick", function() {
+            button.textContent = "Double trouble! 🤩";
+            button.style.backgroundColor = "pink";
+        });
+
+        movementZone.addEventListener("mousemove", function() {
+            button.textContent = "I see you! 👀";
+            button.style.backgroundColor = "lightblue";
+        });
+    </script>
     
 </body>
 </html>
