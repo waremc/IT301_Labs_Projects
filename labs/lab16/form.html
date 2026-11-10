@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 40px auto;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+    }
+    button {
+      margin-top: 16px;
+      padding: 8px 16px;
+    }
+    #password-rules {
+      display: none;
+      margin-top: 8px;
+    }
+    #password-rules ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .invalid {
+      color: red;
+    }
+    .valid {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sign Up</h1>
+
+  <form id="signup-form">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+    <div id="password-rules">
+      <ul>
+        <li id="rule-length" class="invalid">At least 6 characters</li>
+        <li id="rule-special" class="invalid">Must include a special character (!@#$...)</li>
+        <li id="rule-upper" class="invalid">Must include an uppercase letter (A-Z)</li>
+      </ul>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("signup-form");
+    const passwordInput = document.getElementById("password");
+    const rulesSection = document.getElementById("password-rules");
+    const ruleLength = document.getElementById("rule-length");
+    const ruleSpecial = document.getElementById("rule-special");
+    const ruleUpper = document.getElementById("rule-upper");
+
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      window.location.href = "success.html";
+    });
+
+    passwordInput.addEventListener("input", function () {
+      const password = passwordInput.value;
+
+      rulesSection.style.display = "block";
+
+      const hasLength = password.length >= 6;
+      const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+      const hasUpper = /[A-Z]/.test(password);
+
+      ruleLength.classList.toggle("valid", hasLength);
+      ruleLength.classList.toggle("invalid", !hasLength);
+
+      ruleSpecial.classList.toggle("valid", hasSpecial);
+      ruleSpecial.classList.toggle("invalid", !hasSpecial);
+
+      ruleUpper.classList.toggle("valid", hasUpper);
+      ruleUpper.classList.toggle("invalid", !hasUpper);
+    });
+  </script>
+</body>
+</html>
